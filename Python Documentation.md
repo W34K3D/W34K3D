@@ -1140,3 +1140,159 @@ Any additionnal lines of code after the return line will be ignored.
 greet() # Welcome Guest
 greet("John") # Welcome John
  ```
+
+## Functions and Lists
+
+The **max()** function returns the maximum value in a list.  
+
+```py
+prices = [33, 49, 55, 14]
+max_price = max(prices)
+print(max_price)
+$ 55
+```
+The **min()** function returns the minimum value in a list.  
+
+```py
+prices = [33, 49, 55, 14]
+min_price = min(prices)
+print(min_price)
+$ 14
+```
+The **sorted()** function takes an iterable as input and returns a **list** with  
+the items sorted.  
+&nbsp; The **sorted()** function can handle both numerical and textual values.  
+For textual values, it sorts them alphabetically.   
+
+```py
+prices = [503.9, 199.9, 254.5, 39.9]
+srt_prices = sorted(prices)
+print(srt_prices)
+$ [39.9, 199.9, 254.5, 503.9]
+print(srt_prices[1])
+$ 199.9
+```
+
+You can specify ascending or descending order using the **reverse** argument.  
+&nbsp; When **reverse = True**, the values are sorted in decending order.  
+
+```py
+prices = [503.9, 199.9, 254.5, 39.9]
+srt_prices = sorted(prices, reverse =True)
+print(srt_prices)
+$ [503.9, 254.5, 199.9, 39.9]
+# Output the three largest vaues
+print(srt_prices[0:3])
+$ [503.9, 254.5, 199.9]
+```
+
+## Collection Types
+
+A collection in Python is a data type that holds multiple items.  
+
+### Tuples
+
+**Tuples** like lists are ordered collections of items created with parentheses.  
+&nbsp; The items in tuples also have their indexes, starting from 0.  
+You can access the items in tuples just like you do with lists.  
+&nbsp; The difference is tuples are **immutable**.  
+They are useful when the data stored in collections sh    oudn't be accidentally  
+modified during program execution.  
+&nbsp; For example in a GPS navigation application, the coordinates of landmarks  
+should remain constant.  
+
+```py
+b_date = (21, "May", 2004)
+print(b_date[1])
+$ May
+```
+
+Tuples like lists, can contain duplicate elements.   
+&nbsp; You can use the count() function to calculate the number of  
+occurences of an item in a tuple.  
+
+```py
+scores = (7, 9, 9, 8, 9)
+print(scores.count(7))
+print(scores.count(9))
+```
+Many functions used with lists can also be used with tuples, as long as their  
+purpose doesn't include modifying them.  
+&nbsp; len(), max(), coutn() ...
+
+Tuple unpacking allows for assigning tuple items to variables.  
+&nbsp; The values will be assigned in the order they appear in the tuple.  
+While unpacking, the number of variables should match the number of items  
+in the tuple. Otherwise, the program will result in an error.  
+
+```py
+# Unpacking
+product = (2, "Milk", True)
+number, name, is_fresh = product
+```
+The * operator in tuple unpackingis used to gather multiple elements from  
+the tuple into a list.  
+&nbsp; This is useful when dealing with tuples of unknown lenght.  
+
+```py
+scores = (98, 96, 91, 88, 64)
+winner, *rest = scores
+print(winner)
+print(rest)
+```
+
+### Sets 
+
+**Set** is a collection type that is perfect for collecting unique data.  
+&nbsp; Unlike lists and tuples, sets are unordered collections and don't support  
+indexing and slicing.   
+They are created with **curly brackets {}**.  
+&nbsp; **Sets** can't have duplicates, it's usefull to ensure that each item in a collection is unique.  
+&nbsp; Adding duplicate items to a set doesn't cause an error; instead, it's ignored.  
+For example, in social media apps, your friends list should not have duplicates.  
+&nbsp; Like lists and tuples, sets can have values with different data types.  
+Sets are mutable, meaning you can add or remove items from them.  
+
+The **append()** function works only with ordered collection types, because  
+it add an item in the end of a list.  
+&nbsp; Sets are unordered then you can't use it on them.  
+
+```py
+# Use add instead.  
+students = {'Amanda', 'Robert', 'Jeremy'}
+students.add('John')
+```
+
+The **clear()** funtion doesn't accept an argument and removes all the items  
+from a set.  
+```py
+students.clear()
+```
+
+The **union()** function returns a new set with all elements from both sets,  
+omitting duplicates.  
+
+```py
+set1 = {'apple', 'banana'}
+set2 = {'banana', 'cherry'}
+combined_set = set1.union(set2)
+print(combined_set)
+$ {'apple', 'banana', 'cherry'}
+```
+
+The **difference()** function returns a set containing elements that are only  
+in the first set and not in the second.  
+
+```py
+set1 = {'apple', 'banana'}
+set2 = {'banana', 'cherry'}
+unique = set1.difference(set2)
+print(unique)
+$ {'apple'}
+```
+
+|        | MUTABLE | ORDERED | INDEXING | DUPLICATES |  
+| :----- | :-----: | :-----: | :------: | :---------: |  
+|  Lists |   ✅   |    ✅   |    ✅   |     ✅     |  
+| Tuples |   ❌   |    ✅   |    ✅   |     ✅     |
+|  Sets  |   ✅   |    ❌   |    ❌   |     ❌     | 
