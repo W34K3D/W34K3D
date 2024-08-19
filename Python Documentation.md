@@ -1,6 +1,6 @@
 
 // mermaid VS Code plugin
-
+// Preview Ctrl+K V
 # Python Documentation
 
 **bold**
@@ -1205,6 +1205,11 @@ should remain constant.
 b_date = (21, "May", 2004)
 print(b_date[1])
 $ May
+
+# If you try to change an item in it you'll get
+# automatically an error
+b_date[1] = "April"
+$ Error
 ```
 
 Tuples like lists, can contain duplicate elements.   
@@ -1292,7 +1297,662 @@ $ {'apple'}
 ```
 
 |        | MUTABLE | ORDERED | INDEXING | DUPLICATES |  
-| :----- | :-----: | :-----: | :------: | :---------: |  
+| :----- | :-----: | :-----: | :------: | :--------: |  
 |  Lists |   ✅   |    ✅   |    ✅   |     ✅     |  
 | Tuples |   ❌   |    ✅   |    ✅   |     ✅     |
-|  Sets  |   ✅   |    ❌   |    ❌   |     ❌     | 
+|  Sets  |   ✅   |    ❌   |    ❌   |     ❌     |  
+
+
+### Dictionaries 
+
+Key-value pairs are a fundamental concept in programming, allowing for  
+efficient organization and retrieval of data.  
+
+**Dictionaries** are collection types used to store data in **key-value** pairs,  
+wich are considered **items**.  
+&nbsp; They are ideal for organizing data into pairs, where each piece of data(**value**)   
+has its unique identifier (**key**).  
+&nbsp; Dictionaries are created using **curly brackets {}**.  
+**Key-value** pairs in dictionnary are separated by commas, and they an be written on new lines for a better readability.  
+&nbsp; Key and values in a dictionnary are separated by a colon.  
+Values can be of any data type (string, integer, float, boolean, list ...).  
+
+```py
+# dictionary name: product
+# keys: "name", "color", "prices"
+# values: "pen", "res", 79
+product = {
+    "name": "pen",
+    "color": "red",
+    "price": 79
+}
+```
+
+To access values in dictionaries you need to use the **keys**.  
+&nbsp; The keys should be enclosed in square brackets.
+
+```py
+contact = {
+    "name": "John"
+    "company": "Google"
+}
+"info" = contact[company]
+print(info)
+$ Google
+```
+Another way to access values in a dictionary is through the **the get()** function.  
+&nbsp; Its called on a dictionary using **dot.notation** an accepts the key as  
+an argument.  
+
+```py
+info = contact.get("company")
+```
+
+You can get all the values and keys of a dictionary using the **values()** and **keys()**  
+functions respectively.  
+&nbsp; The items() function returns all the **key.value** pairs in a dictionary.   
+
+```py
+info_keys = contact.keys()
+info_values = contact.values()
+info_items = contact.items()
+```
+
+You can change values in already created dictionaries, this means they are  
+mutable.  
+
+```py
+student["score"] = 88
+```
+You can add a new item by providing a new key and assigning a value to it. 
+
+```py
+student["faculty"] = "Arts"
+```
+
+The **update()** function updates the dictionary with the items from the given argument.  
+&nbsp; The argument must be a dictionary with the item you want to updtate.
+
+```py
+car.update({"Color": "red"})
+```
+The **pop()** function removes the item with the specified key name.  
+&nbsp; It accepts the key of the item you want to remove as an argument.  
+
+```py
+car.pop("Color")
+```
+You can use the **in** operator to check if a key or a value occurs in a dictionary.  
+
+```py
+car = {
+    "Brand": "Ford",
+    "Color": "red"
+}
+
+# Check if "Colors is a key in car dictionary" 
+print("Color" in car)
+$ True
+# It return False because Ford is not a key but a value.
+print("Ford" in car)
+$ False
+```
+To check if a value occurs in a dictionary, you need to use the **values()** function.
+
+```py
+# Check if the value Ford occurs in the car dictionary
+"Ford" in car.values()
+```
+
+You can iterate through a dictionary using a **for** loop.  
+&nbsp; If you loop through a dictionary, it will return the **keys**.  
+
+```py
+car = {
+    "Brand": "Ford",
+    "Color": "red"
+}
+# Print keys in car dictionaries
+for i in car :
+    print(i)
+$ Brand
+$ Color
+
+# Print values in car dictionaries
+for i in car.values():
+    print(i)
+$ Ford
+$ red
+```
+
+### List comprehension  
+
+Creating lists from scratch can be times-consuming, requiring you to manually  
+write all the items or iterate through them with a loop.  
+
+Let's imagine you need to create a list containing numbers from **1** to **50**.  
+
+```py
+# Here is the code you need to write :
+nums = []
+for x in range(1,51):
+    nums.append(x)
+
+print(nums)
+```
+
+**List comprehensions** are useful shorthands for such operations.  
+&nbsp; They offer a shorter and more readable way to create lists.  
+
+```py
+nums = [x for x in range(1,51)]
+print(nums)
+```
+Here is a generic syntax and structure of a list comprehension:  
+1. **variable** : the variable that will store the newly created list.  
+2. **expression** : an expression performed on each item.  
+If no specific action is needed, the item itself is used.  
+3. **item** : the current item being processed
+4. **iterable** : any iterable object, such as ranges, strings, tuples and sets.  
+
+```
+<variable> = [<expression> for <item> in <iterable>]
+```
+
+You can incroporate a condition into a list comprehension, placed after  
+the iterable.  
+
+```py
+<variable> = [
+    <expression> for <item> in <iterable> if <condition> 
+]
+# The following code filters out names that start with B
+users = ["Brandon", "Emma", "Brian", "Sophia", "Bella"]
+group = [x for x in users if x[0] == "B"]
+print(group)
+$ ['Brandon', 'Brian', 'Bella']
+```
+
+## Error Handling
+
+In programming, bugs and errors are common, regardless of experience level.  
+&nbsp; They can range from minor typos to complex logical errors.  
+
+### Bugs
+
+**Bugs** are flaws or mistakes in a program's code, leading to incorrect or  
+unintended behavior.  
+&nbsp; This doesn't necessarily stop the program from running to completion,  
+but it can result in wrong outputs or behaviors.  
+
+```py
+# The code below is meant to concatenate name and surname
+# with a space. It executes without error but omits  
+# the space, wich indicates a bug.  
+name = "Mery"
+surname = "Osborn"
+print(name + surname)
+```
+
+### Exceptions
+
+**Exceptions** are another category of mistakes in programming.  
+&nbsp; These are specific errors that occur during a program's execution and  **interupt**  
+its normal flow when first encountered.  
+
+```py
+# The program bellow will stop execution on line 2.
+name = "Bob"
+name[0] = "R"
+print(name)
+```
+
+There are several types of exceptions in Python.  
+
+The **NameError** exception is raised when an unknown variable is used.  
+
+The **SyntaxError** exception is raised when a syntax mistake in the code  
+is encountered.  
+&nbsp; This could be due to various reasons such as missing punctuation  
+(like commas, parentheses or colons).  
+
+The **IndexError** is raised when you attempt to access an element of an iterable,  
+ordered collection, such as list and tuples, using an index that is outside is valid  
+range.  
+
+The **TypeError** exception is raised when a function is called on a value of  
+an inapptopriate type.  
+&nbsp; For example, the **len()** function can be called only on iterables (like strings,  
+lists, etc.).
+
+The **ValueError** Exception is raised when a function receives a value of  
+the correct type, but the value itself is inappropriate or unacceptable.  
+&nbsp; For example, the **int()** function can only be called on strings, but only when all characters in the string are numerical values.  
+
+**Exception handling** allows you to prevent program failure by processing  
+potential exceptions in the way you need.  
+
+```mermaid
+flowchart LR
+    id1["Code"] -- No Exception --> id2["Next Code"]
+    id1["Code"] -- Exception --> id3["Execution Stop"]
+    id3["Execution Stop"] --> id2["Next Code"]
+```
+
+To handle a specific type of exception, you need to specify it in the except block.  
+&nbsp; When you specify only one type of exception to be handled, other types of exceptions will not be covered.  
+&nbsp; If these other exceptions occur, the program execution will fail.  
+
+```py
+color = "Green"
+try:
+    print(color)
+except NameError:
+    print("Checkthevariablename")
+```
+
+You can have multiple **except** blocks to handle each possible exception specifically.  
+&nbsp; As a best practice, it is recommended to output a definitive message for each  
+exception.  
+
+
+```py
+color = ['Red', 'Yellow', 'Green']
+try:
+    print(color[10])
+except IndexError:
+    print("Out of range")
+except NameError:
+    print("Checkthevariablename")
+```
+
+You can choose not to specify the exception type, wich allows handling of any  
+exceptions that may occur.  
+&nbsp; While this approach is easier, the downside is that the error messages may not  
+be as clear and helpful.  
+
+```py
+product = "TV" :
+try:
+    print(product)
+except:
+    print(error)
+```
+
+Exceptions are very helpful when your program interacts with user input.  
+&nbsp; While you can't control what a **user input**, you can control your program  
+behavior when the input doesn't match the expected format.  
+
+```py
+price = input()
+try:
+    price_value = int(price)
+except ValueError:
+    print("Please enter a number")
+```
+
+You can use the **finally** statement to perform an operation after the try/except, 
+no matter if an exception occured or not.  
+
+ ```py
+try:
+    print(len(3745))
+except:
+    print("Error")
+finally:
+    print("Save")
+$ Error
+$ Save
+ ```
+
+The **else** statement can be used in conjunction with the try/except block and  
+will execute only when no error occurs in the try block.  
+
+ ```py
+products = ['ball', 'toy', 'paper']
+try:
+    count = len(products)
+except:
+    print("Error")
+else:
+    print("Count of products:", count)
+$ Count of products: 3
+ ```
+
+You can raise your own exceptions based on specific conditions using the **raise**  
+statement.  
+&nbsp; This will immediately stop the program's execution and indicate an error has  
+occurred.  
+
+```py
+price = 995
+if price > 500:
+    raise ValueError
+```
+
+Custom exceptions are really helpful when it comes to handling logical issues  
+that can't be caught by the computer.  
+&nbsp; You can even add a custom message.  
+
+```py
+year_born = 93
+if year_born != 4:
+    raise ValueError("Wrong date")
+```
+
+## Functional programming
+
+Functions in Python play a crucial role in enhancing the efficiency, reusability  
+and organization of code.  
+
+**Higher-Order Functions** take another function as an argument or return  
+a function. They are useful for processing various functions and returning  
+specific results.  
+
+```py
+def book_title(title):
+    return "Book title: " + title
+def info(title, func):
+    return func(title)
+print(info("The Great Gatsby", book_title))
+$ Book title: The Great Gatsby
+```
+
+**Pure Functions** are functions that gave the same result every time you give it  
+the same inputs, and it doesn't affect anything outside of the function.  
+&nbsp; This makes them thrustworthy and simpler to understand.  
+
+```py
+def total(price, count):
+    return price * count
+```
+
+**Impure functions** depends on any external state that it modifies or that affects 
+ their outputs. This include changing variables or altering inputs arguments.   
+ &nbsp; Such dependencies make the function's behavior unpredictable and dependent on the context in wich it's run.
+
+```py
+def hashtag():
+    word = input()
+    return '#' + word
+```
+
+### Lambda Expressions
+
+**Lambda Expressions** are functions without a name that are quick to create and  
+use. They are written in just one line using the **lambda** keyword and are often  
+used for small simple tasks.
+
+They are called **anonymous** functions.  
+&nbsp; This means that they don't need a name while being defined.  
+
+```py
+lambda x:x+5
+```
+
+Lambda expressions perform a single operation and return a result.  
+&nbsp; They are defined using the **lambda** keyword, followed by its **argument**,  
+a **colon** and the **expression** to perform.  
+
+```py
+lambda <argument>:<expression>
+```
+You can assign the lambda expression to a variable and call it as regular  
+expression.  
+
+```py
+greet = lambda name:"Welcome, " + name
+print(greet("Bob"))
+```
+
+Lambda expressions can take multiple arguments separated by commas.  
+
+```py
+lambda width,height:width*height
+```
+
+You can provide arguments to lambda expressions on-the-fly by adding them  
+in parentheses immediately after the lambda function.  
+&nbsp; The lambda expression should be also enclosed in parentheses.  
+
+```py
+res = (lambda x,y:x*y)(2,3)
+print(res)
+$ 6
+```
+The power of lambda is better shown when used in anonymous function inside  
+another function.  
+```py
+def mult(n):
+    return lambda a:a*n
+
+doubler = mutl(2)
+tripler = mult(3)
+```
+
+### Map and Filters
+
+The **map()** function applies a specified function to every element in  
+an iterable, like lists or tuples.  
+&nbsp; It produces a result that can be transformed into a list using the **list()**  
+function for easy viewing or further use. 
+
+```py
+prices = [25.99, 14.58, 8.75, 19.95]
+def discount(price):
+    discounted_price = price * 0.9
+    return discounted_price
+
+discounted_price = list(map(discount, prices))
+```
+
+The map function **requires** the first argument to be a function and  
+the second to be an iterable.  
+```py
+map(<function>, <iterable>)
+```
+
+The **filter()** function, just like the map() function, takes in a function and  
+an iterable as arguments.  
+&nbsp; The key purpose of filter() is to apply a condition specified in  
+the provided function to each item in the iterable and return only those for  
+wich the function evaluates to **True**.
+
+The filter() function is particulary useful for extracting subsets of data that  
+meet certain criteria.  
+
+```py
+filter(lambda price: price < 90 , prices)
+```
+
+Transforms teh items of an iterable : map()  
+Returns items that meet a condition: filter()
+
+```py
+names = ["James", "Emma", "Jake", "Rachel", "John"]
+filtered = 
+list(filter(lambda name: name[0] == 'J', names))
+$ ["James", "Jalke", "John"]
+```
+
+### Args and Kwargs
+
+If the number of arguments of your function is unknown and  
+unpredictable, you can always use an iterable as an argument.  
+
+***Args** allow you to provide any number of arguments without the need  
+to create a list before calling the function each time.  
+
+```py
+def total(*args):
+    result = 0
+    for arg in args:
+        result += arg
+    return result
+```
+*args receives arguments as a tuple, wich can be used inside the function.  
+&nbsp; You need to use the unpacking operator * before args.  
+This operator informas Python that the argument is an iterable and should  
+be unpacked to receive its values as individual arguments.  
+
+```py
+def total(*args)
+```
+Note that **args** is just a name.  
+&nbsp; You're not required yo use the name args.  
+You can choose any name you prefer.  
+
+```py
+def total(*prices):
+    result = 0
+    for arg in prices:
+        result += arg
+    return result
+```
+
+When defining a function with both regular arguments ans *args,  
+the regular arguments must come **before** *args in the function definition.  
+
+```
+def <func>(<argument>,<*args>)
+```
+
+Pyhton also allows you to pass keyword arguments using ****kwargs**.  
+&nbsp; In this case, **kwargs receives arguments in the form of a dictionary,  
+consisting of key:value pairs.  
+
+The ** **operator** in Python is used to unpack dictionaries into arguments.  
+&nbsp; It enables a function to accept an arbitrary number of keyword  
+arguments, converting these arguments into a dictionary of **key:value**  
+pairs.  
+
+*args: tuple  
+**kwargs : dictionary
+
+The order of arguments is important
+```
+def <func>(<argument>,<*args>, <**kwargs>)
+```
+
+### Decorators
+
+**Decorators** modify a function's behvior without altering its original code.  
+&nbsp; You can apply a decorator to a function using the @ sign.  
+When a function with a decorator is called, it automatically includes  
+the behavior defined in the decorator.  
+&nbsp; It's a good practice to include 'decorator' in the name of a decorator function.  
+
+```py
+@light_decorator
+defwatch_movie():
+    return "Enjoyingthemovie!"
+```
+It's a good practice to use *args and **kwargs in the signture of a wrapper  
+function within a decorator.  
+&nbsp; This approach ensures that the decorator is versatile and can be applied to any  
+function, regardless of the number and type of its arguments.    
+
+```py
+def some_decorator(func):
+    def wrapper(*args,**kwargs)
+```
+
+## Object Oriented Programming
+
+A class is a blueprint for creating objects, defining their characteristics and  
+behavior.  
+In Python, you can define a class by using the **class** keyword followed by  
+the class **name** and a colon.   
+
+```py
+class Car :
+```
+
+Attributes are the properties that define an object's individuality within a class.  
+&nbsp; To add attributes to a class, you must define the **init** method.  
+This method's first parameter is always **self**, wich represents the instance of  
+the class.  
+&nbsp; Following self, you specify the attributes you wish to include.  
+Then inside the function, you assign values to the initialized object's attributes,  
+setting their initial state.  
+
+```py
+class Car:
+    def __init__(self, brand, color):
+        self.brand = brand
+        self.color = color
+```
+
+After an object is created, you can access its attributes by using the dot .  
+notation with the variable holding the object.  
+
+```py
+# This code creates an instance of the **Car** class 
+# and displays the value of one of its attributes.  
+my_car = Car('Toyota', 'green')
+
+print(my_car.brand)
+```
+
+In addition to attributes, you can add custom **behaviors** to a class by defining  
+**functions** within it.  
+&nbsp; These functions, known as **methods**, should include the 'self' parameter  
+to interract with the class instance.  
+&nbsp; You can call these methods using the dot . notation, similar to how you access  
+attributes.
+
+The main difference between **funcitons** and **methods** is that functions are  
+independent and can be called on their own, while methods ara associated with  
+a class and can be called only with its instance where it is defined. 
+
+```py
+class Car:
+    def __init__(self, brand, color):
+        self.brand = brand
+        self.color = color
+
+    def honk(self):
+```
+
+Everything in Python, including functions, is an object.  
+&nbsp; For instance, integgers are instances for the int class, and functions are  
+instances of the function class, among others.  
+
+### Inheritance
+
+**Inheritance** is a key concept for situations where you have an existing class  
+with defined attributes and behaviors, and you need a new class that not only  
+shares these characteristics but also its own unique ones.  
+
+Inheritance allows new class to 'inherit' properties from the existing class while  
+adding or modifying specific features as needed.  
+
+A class from wich others inherited is known as a **superclass** or **parent** class.  
+&nbsp; Conversely, a class that inherits from another class is reffered to as a **subclass**  
+or **child** class.  
+
+When defining a child class, include the parent class name in parentheses.  
+
+```py
+class Car(Vehicle):
+```
+
+If we want to inherit attributes but also add specific ones to a child class,  
+we define an **init** method in the child class.  
+&nbsp; Use **super().__init__()** to inherit attributes from the parent class, and then define  
+any additional attributes as usual.  
+
+```py
+class Student(Person):
+    def __init__(self, name, age, faculty):
+        super().__init__(name, age)
+        self.faculty = faculty
+```
+
+You can define methods with the same name in both parent and child classes,  
+but they can perform different operations.  
+&nbsp; This is known as **method overriding**.  
+
+For instance, consider the **Animal** class with a **sound** method.  
+&nbsp; The **Dog** and **Cat** child classes inherit the sound method from Animal but  
+override it to suit their specific needs.  
