@@ -30,31 +30,28 @@ Create an Amazon account
 - A region is a **cluster of data centers**  
 - **Most AWS services are region-scoped**
 
-### How to choose an AWS Region ?
+#### How to choose an AWS Region ?
 
-- **Compliance** with data governance and legal requirements:</br>data never leaves a region without your explicit permission</br>
+- **Compliance** with data governance and legal requirements:</br> data never leaves a region without your explicit permission</br>
 - **Proximity** to customers: reduced latency</br>
 - **Available services** within a Region:</br>new services and new features aren't available in every Region
 - **Pricing**: princing varies region to region and is transparent in</br>
 the service pricing page</br>
 
-### AWS Availability Zoes
+### AWS Availability Zones
 
 - Each region has many availability zones (usually 3, min is 3, max is 6).</br>
 Example:
     - ap-southeast-2a
     - ap-southeast-2b
     - ap-southeast-2c
-- Each availability zone (AZ) is one or more
-discrete data centers with</br>
-redundant power, networking, and connectivity</br>
+- Each availability zone (AZ) is one or more discrete data centers with redundant power, networking,</br> and connectivity</br>
 - They're separate from each other, so that they're isolated from disasters</br>
 - They're connected with high bandwidth ultra-low latency networking</br>
 
 ### AWS Points of Presence (Edge Locations)
 
-- Amazon had 400+ Points of Presence (400+ Edge Locations & 10+</br>
-Regional Caches) in 90+ cities across 40+ countries</br>
+- Amazon had 400+ Points of Presence (400+ Edge Locations & 10+ Regional Caches) in 90+ cities</br> across 40+ countries</br>
 - Content is delivered to end users with the lower latency possible
 
 https://aws.amazon.com/cloudfront/features
@@ -87,14 +84,12 @@ Services >
 - **Root account** created by default, shouldn't be used or shared  
 - **Users** are people within your organisation, and can be grouped
 - **Groups** only contain users, not other groups
-- Users don't have to belong to a group, but a user can belong to multiple</br>
-groups
+- Users don't have to belong to a group, but a user can belong to multiple groups
 
 ### IAM: Permissions
 - **Users or Groups** can be assigned JSON documents called policies
 - These policies define the **permissions** of the users
-- In AWS you apply the **least privilege principle:** don't give more</br>
-permissions than a user needs
+- In AWS you apply the **least privilege principle:** don't give more permissions than a user needs
 
 ```json
 {
@@ -129,7 +124,7 @@ On the left, click on Users
 ### IAM Policies Structure 
 
 - Consist of 
-  - Version: oplicy language version, always include "2012-10-17"
+  - Version: policy language version, always include "2012-10-17"
   - Id: an identifier for the policy (optional)
   - Statement: one or more individual statements (required)
 
@@ -150,7 +145,7 @@ On the left, click on Users
             "Sid": "1",
             "Effect": "Allow",
             "Principal": {
-                "AWS": ["arn:aws:iam:123456789012:root]
+                "AWS": ["arn:aws:iam:123456789012:root"]
             },
             "Action": [
               "s3:GetObject",
@@ -181,29 +176,26 @@ On the left, click on Users
 
 ### Multi Factor Authentication - MFA
 
-- Users have access to your account and can possibly change configurations</br>
-or delete resources in your AWS account
+- Users have access to your account and can possibly change configurations or delete resources in</br> your AWS account
 - **You want to protect your Root Accounts and IAM users**
 - MFA = password you know + security device you own
-- **Main benefit of MFA:**</br> 
-If a password is stolen or hacked, the account is not compromised
+- **Main benefit of MFA:**</br> If a password is stolen or hacked, the account is not compromised
 
 ### MFA devices options in AWS
 
-**Virtual MFA device**
-- Google Authenticator (phone only)
-- Authy (phone only)
-
+- **Virtual MFA device**
+  - Google Authenticator (phone only)
+  - Authy (phone only)</br>
 Support for multiple tokens on a single device.
 
-**Universal 2nd Factor (U2F) Security Key**
-- YubiKey (3rd party)
+- **Universal 2nd Factor (U2F) Security Key**
+  - YubiKey (3rd party)
 
-**Hardware Key Fob MFA Device**
-- Gemalto (3rd party)
+- **Hardware Key Fob MFA Device**
+  - Gemalto (3rd party)
 
-**Hardware Key Fob MFA Device for AWS GovCloud (US)**
-- SurePassID (3rd party)
+- **Hardware Key Fob MFA Device for AWS GovCloud (US)**
+  - SurePassID (3rd party)
 
 ## IAM MFA Hands On
 
@@ -216,7 +208,7 @@ Click on Account settings > Password policy
 - To access AWS, you have three options:
   - AWS Management Console (protected by password + MFA)
   - AWS Command Line Interface (CLI): protected by access keys
-  - AWS Software Developer Kit (SDK) - for code: protected by access</br>keys
+  - AWS Software Developer Kit (SDK) - for code: protected by access keys
 - Access Keys are generated through the AWS Console
 - Users manage their own access keys
 - Access Keys are secret, just like a password. Don't share them 
@@ -225,7 +217,7 @@ Click on Account settings > Password policy
 
 ### What's the AWS CLI ?
 
-- A tool that enables you to interact with AWS services using commands in</br>your command-line shell
+- A tool that enables you to interact with AWS services using commands in your command-line shell
 - Direct access to the public APIs of AWS services
 - You can develop scripts to manage your resources
 - It's open-source https://github.com/aws/aws-cli
@@ -270,9 +262,9 @@ List all users in the account
 ## IAM Security Tools
 
 - IAM Credentials Report (account-level)
-  - a report that list all your account's users and the status of their</br> various credentials
+  - a report that list all your account's users and the status of their various credentials
 - IAM Access Advisor (user-level)
-  - Access advisor shows the service permissions granted to a user and</br> when those services where last accessed 
+  - Access advisor shows the service permissions granted to a user and when those services</br> where last accessed 
   - you can use thes informations to revise your policy tools
 
   ## IAM Guidelines & Best Practices
@@ -284,7 +276,7 @@ List all users in the account
   - Use and enforce the use of Mutifactor Authentication (MFA)
   - Create and use Roles for giving permissions to AWS services
   - Use Access Keys for Programmatic Access (CLI/ SDK)
-  - Audit permissions of your account using IAM Credentials Report &</br> IAM Access Advisor
+  - Audit permissions of your account using IAM Credentials Report & IAM Access Advisor
   - Never share IAM users & Access Keys
 
 ## AWS Budget Setup
@@ -385,7 +377,8 @@ instance | vCPU | Mem (GiB) | Storage | Network Performance | EBS Bandwith (Mbps
 
 **Compute Optimized**</br>
 The C (Compute) series</br>
-| C6g | C6gn | C5 | C5a | C5n | C4
+| C6g | C6gn | C5 | C5a | C5n | C4 |
+|:--:|:--:|:--:|:--:|:--:|:--:|
 
 ### EC2 Instance Types - Memory Optimized
 
@@ -398,7 +391,8 @@ The C (Compute) series</br>
 
 **Memory Optimized**</br>
 The R (RAM) series</br>
-R6g | R5 | R5a | R5b | R4 | X1e | X1 | High Memory | Z1d
+| R6g | R5 | R5a | R5b | R4 | X1e | X1 | High Memory | Z1d
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
 
 ### EC2 Instance Types - Storage Optimized
 
@@ -412,7 +406,9 @@ R6g | R5 | R5a | R5b | R4 | X1e | X1 | High Memory | Z1d
 
 **Storage Optimized**</br>
 The I or D series</br>
-I3 | I3en | D2 | D3 | D3en | H1
+| I3 | I3en | D2 | D3 | D3en | H1 |
+|:--:|:--:|:--:|:--:|:--:|:--:|
+
 
 
 ## Security Groups & Classic Ports Overview
@@ -461,11 +457,11 @@ A--Any Port-->E[WWW Any IP]
 ### Security Groups Good to Know
 
 - Can be attached to multiple instances
-- Locked down to a region / VPC combination</br> (if you change your region or your VPC, you have to recreate the Security</br> group)
-- Does live "outside" the EC2  - if traffic is blocked the EC2 instance won't</br> see it
+- Locked down to a region / VPC combination</br> (if you change your region or your VPC, you have to recreate the Security group)
+- Does live "outside" the EC2  - if traffic is blocked the EC2 instance won't see it
 - It's good to maintain one separate security group for SSH access
-- If your application is not accessible (time out), then it's a security group</br> issue
-- If your application gives a "connection refused" error, then it's an</br> application error or it's not launched
+- If your application is not accessible (time out), then it's a security group issue
+- If your application gives a "connection refused" error, then it's an application error or it's not</br> launched
 - All inbound traffic is blocked by default
 - All outbound traffic is authorised by default
 
@@ -478,3 +474,170 @@ A--Any Port-->E[WWW Any IP]
 - 80 = HTTP - access unsecured websites
 - 443 = HTTPS - access secured websites
 - 3389 = RDP (Remote Desktop Protocol) - log into a Windows instance
+
+## SSH Overview
+
+
+
+## EC2 Instance 
+
+Instances (left) > My first instance > Connect > a new tab will open
+
+## EC2 Role Demo
+
+In the instance 
+
+**Never insert your IAM API key in an EC2 instance, it can be stolen**
+
+## EC2 Instances Purchasing Options
+
+- **On-Demand Instances** - short workload, predictable pricing, pay by second
+- **Reserved** (1 & 3 years)
+  - Reserved Instances - long workloads
+  - Convertible Reserved Instances - long workloads with flexible instances
+- **Savings Plans** (1 & 3 years) - commitment to an ammount of usage, long workload
+- **Spot Instances** - short workloads, cheap, can lose instance (less reliable)
+- **Dedicated Hosts** - book an entire physical server, control instance placement
+- **Dedicated Instances** - no other customers will share your hardware
+- **Capacity Reservations** - reserve capacity in a specific AZ for any duration
+
+### EC2 On Demand
+
+- Pay for wha you use:
+  - Linux or Windows - billing per second after the first minute
+  - All other operating systmes - billing per hour
+- Has the highest cost but no upfront payment
+- No long-term commitment
+
+- Recommended for short-term and un-interrupted workloads,</br> where you can't predict how the application will behave
+
+### EC2 Reserved Instances
+
+- You reserve a specific instance attributes</br> (Instance Type, Region, Tenancy, OS)
+- **Reservation Period** - 1 year (+discount) or 3 years (+++discount)
+- **Payment Options** - No Upfront (+), Partial Upfront (++), All Upfront (+++)
+- **Reserved Instance's Scope** - Region or Zonal (reserve capacity in an AZ)
+- Recommended for steady-state usage applications (think database)
+- You can buy and sell in the Reserved Instance Marketplace</br>
+
+- **Convertible Reserved Instance**
+  - Can change EC2 instance type, instance family, OS, scope and</br> tenancy
+
+### EC2 Savings Plans
+
+- Get a discount based on long-term usage 
+- Commit to a certain type of usage (10$/hour gor 1 or 3 years)
+- Usage beyond EC2 Saving Plans is billed at the On-Demand price
+- Locked to a specific instance family & AWS region (e.g., M5 in us-east-1)
+- Flexible across:
+  - Instance Size (e.g., m5.xlarge, m5.2xlarge)
+  - OS (e.g., Linux, Windows)
+  - Tenancy (Host, Dedicated, Default) 
+
+### EC2 Spot Instances
+
+- Can get a discount superior than On-demand
+- Instances that you can "lose" at any point of time if your max price is less than the current</br> spot price
+- The **MOST cost-efficient** instance in AWS
+- **Useful for workloads that are resilient to failure**
+  - Batch jobs
+  - Data analysis
+  - Image processing
+  - Any **distributed** workloads
+  - Workloads with a flexible start and end time
+
+- **Not suitable for critical jobs or databases**
+
+### EC2 Dedicated Hosts
+
+- A physical server with EC2 instance capacity fully dedicated to your use
+- Allows you address **compliance requirements and use your existing server-bound</br> software licences** (per-socket, per-core, per-VM software licences)
+- Purchasing Options:
+  - **On-demand** - pay per second for active Dedicated Host
+  - **Reserved** - 1 or 3 years (No Upfront, Partial Upfront, All Upfront)
+- The most expensive option
+
+- Useful for software that have complicated licensing model</br>(BYOL - Bring Your Own License)
+- Or for companies that have strong regulatory or compliance needs
+
+### EC2 Dedicated Instances
+
+- Instances run on hardware that's dedicated to you
+- May share hardware with other instances in same account
+- No control over instance placement (can move hardware after Stop/Start)
+
+| Characteristic | Dedicated Instances | Dedicated Hosts |
+| :--- | :--: | :---: |
+| Enables the use of dedicated physical servers | X | X |
+| Per instance billing (suject to $2 per region fee) | X |  |
+| Per host billing |  | X |
+| Visibility of sockets, cores, host ID |  | X |
+| Affinity between a host  and instance | | X |
+| Targeted instance placement | | X |
+| Automatic instance placement | X | X |
+| Add capacity using an allocation request | | X |
+
+### EC2 Capacity Reservations
+
+- Reserve **On-Demand** instances in a specific AZ for any duration
+- You always have access to EC
+ capacity when you need it
+ - **No time commitment** (create/cancel anytime), no billing discounts
+ - Combine with Regional Reserved instances and Savings Plans to benefit from billing</br> discounts
+ - You're charged at On-Demand rate wheter you run instances or not
+ - Suitable for short-term, uninterrupted workloads that need to be in a specific AZ
+
+### Wich purchasing option is right for me ?
+
+- **On demand**: coming and stay in resort whenever we like, we pay the full price
+- **Reserved**: like planning ahead and if we plan to stay for a long time, we may get a good discount
+- **Saving Plans**: pay a certain amount per hour for certain period and stay in any room type</br> (e.g., King, Suite, Sea View, ...)
+- **Spot instances**: the hotel allows people to bid for the empty rooms and the highest bidder keeps</br> the rooms. You can get kicked out at any time
+- **Dedicated Host**: We book an entire building of the resort
+- **Capacity reservation**: you book a room for a period with full price even if you don't stay in it
+
+## Private vs Public IP
+
+- Networking has two sorts of IPs. IPv4 and IPv6:
+  - IPv4: 1.160.10.240
+  - IPv6: 3ffe:1900:4545:3:200:f8ff:fe21:67cf
+- IPv4 is still the most common format used online
+- IPv6 is newer and solves problems for the Internet of Things (IoT0)
+- IPv4 allows for 3.7 billion different adresses in the public space
+
+### Fundamental Differences
+
+- Public IP:
+  - Public IP means the machine can be identified on the internet (WWW)
+  - Must be unique across the whole web (not two machines can have the same public IP)
+  - Can be geo-located easily
+- Private IP:
+  - Private IP means the machine can only be identified on a private network only
+  - The IP must be unique across the probate network
+  - BUT two different private networks (two companies) can have the same IPs.
+  - Machines connect to WWW using a NAT + internet gateway (a proxy)
+  - Only a specify range of IPs can be use as private IP
+
+### Elastic IPs
+
+- When you stop and then start EC2 instance, it can change its public IP
+- If you need to have a fixed public IP for your instance, you need an Elastic IP
+- An Elastic IP is a public IP you own as long as you don't delete it
+- You can attach it to one instanc at a time
+- With an Elastic IP address, you can mask the failure of an instance or software by rapidly</br> remapping the address to another instance in your account
+- You can only have 5 Elastic IP in your account (you can ask AWS to increase that)
+- Overall, try to avoid using Elastic IP
+  - They oftenn reflect poor achitectural decisions
+  - Instead, use  random public IP and register a DNS name to it
+  - Or, as we'll see later, use a Load Balancer and don't use a public IP
+
+### Private vs Public IP (IPv4) in AWS EC2 - Hands On
+
+- By default, your EC2 machine comes with:
+  - A private IP for the internal AWS Network
+  - A public IP, for the WWW
+- When we are doing SSH into our EC2 machines:
+  - We can't use a private IP? because we are not in the same network
+  - We can only use the public IP
+
+- If your machine is stopped and then started, the public IP can change
